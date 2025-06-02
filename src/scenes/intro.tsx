@@ -12,13 +12,13 @@ export default makeScene2D(function* (view) {
 	// Add actors
 	view.add(
 		<>
-			<Rect layout fill={'#141414'} padding={[30, 40, 20]} radius={8}>
+			<Rect layout>
 				<Txt
 					ref={label}
 					fontSize={120}
 					lineHeight={120}
 					fontFamilty={'JetBrains Mono'}
-					fill={'rgba(255, 255, 255, 0.6)'}
+					fill={'rgba(255, 255, 255, 1.0)'}
 				/>
 			</Rect>
 		</>,
@@ -26,8 +26,9 @@ export default makeScene2D(function* (view) {
 	
 	// Animate actors
 	yield label().text('HELLO', 1, linear);
-	yield* waitUntil('next'); // you drag this in editor to set how long we wait till we go down
+	yield* waitUntil('next');
 	yield* all(
 		label().parent().position.y(-1400, 1)
 	)
 });
+
