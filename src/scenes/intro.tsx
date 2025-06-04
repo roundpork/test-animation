@@ -27,8 +27,6 @@ export default makeScene2D(function* (view) {
 	// Animate actors
 	yield label().text('HELLO', 1, linear);
 	yield* waitUntil('next');
-	yield* all(
-		label().parent().position.y(-1400, 1)
-	)
+	yield* label().parent().position.y(-1400, 1);
 });
 

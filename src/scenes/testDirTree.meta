@@ -1,0 +1,14 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "signal",
+      "targetTime": 1.3193535999430215
+    },
+    {
+      "name": "name_radius",
+      "targetTime": 2.619545985395947
+    }
+  ],
+  "seed": 2233049052
+}

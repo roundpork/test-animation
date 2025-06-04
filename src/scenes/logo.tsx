@@ -3,7 +3,7 @@ import {waitUntil} from '@motion-canvas/core/lib/flow';
 import {all} from '@motion-canvas/core';
 import {Rect} from '@motion-canvas/2d/lib/components';
 import {createRef} from '@motion-canvas/core/lib/utils';
-import logo from '../images/roundpork-youtube-logo.png';
+import logo from '../images/roundpork-youtube-logo.svg';
 
 export default makeScene2D(function* (view) {
 	// Create anchors
@@ -22,11 +22,11 @@ export default makeScene2D(function* (view) {
 		</>,
 	);
 	
-	// Animate actors
-	yield logoRef().scale(1.0, 1);
+	// Animate anchors
+	yield* logoRef().scale(1.0, 0.5);
+	yield* waitUntil('rotate');
+	yield* logoRef().absoluteRotation(45, 0.5).to(0, 0.5);
 	yield* waitUntil('next');
-	yield* all(
-		logoRef().parent().position.y(-1400, 1)
-	)
+	yield* logoRef().parent().position.y(-1400, 1);
 });
 
