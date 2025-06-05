@@ -1,17 +1,39 @@
-import {Img, makeScene2D} from '@motion-canvas/2d';
+import {Img, makeScene2D, Circle} from '@motion-canvas/2d';
 import {waitUntil} from '@motion-canvas/core/lib/flow';
-import {all} from '@motion-canvas/core';
+import {all, createRef, spring, easeOutBounce} from '@motion-canvas/core';
 import {Rect} from '@motion-canvas/2d/lib/components';
-import {createRef} from '@motion-canvas/core/lib/utils';
 import logo from '../images/roundpork-youtube-logo.svg';
+import logoWhite from '../images/roundpork-youtube-logo-all-white.svg';
 
 export default makeScene2D(function* (view) {
 	// Create anchors
+	const circleRef = createRef<Circle>();
 	const logoRef = createRef<Image>();
-
+	const logoWhiteRef = createRef<Image>();
+	const MySpring = {
+  		mass: 1,
+  		stiffness: 120,
+  		damping: 10,
+  		initialVelocity: 0,
+	};
 	// Add actors
 	view.add(
 		<>
+			<Rect layout>
+				<Circle
+					ref={circleRef}
+					width={0}
+					height={0}
+					fill="#e13238"
+				/>
+			</Rect>
+			<Rect layout>
+				<Img
+					ref={logoWhiteRef}
+					src={logoWhite}
+					scale={0}
+				/>
+			</Rect>
 			<Rect layout>
 				<Img
 					ref={logoRef}
@@ -23,10 +45,18 @@ export default makeScene2D(function* (view) {
 	);
 	
 	// Animate anchors
-	yield* logoRef().scale(1.0, 0.5);
-	yield* waitUntil('rotate');
-	yield* logoRef().absoluteRotation(45, 0.5).to(0, 0.5);
+	yield* logoRef().scale(0.6, 0.5);
+	yield* logoRef().scale(0.5, 0.5, easeOutBounce);
+	yield* logoRef().absoluteRotation(30, 0.2);
+	yield* all(
+		logoWhiteRef().scale(0.55, 0.2),
+		spring(MySpring, 30, 0, 0.4, value => {
+			logoRef().absoluteRotation(value);
+			logoWhiteRef().absoluteRotation(value);
+		}),
+		circleRef().width(2500, 0.7),
+		circleRef().height(2500, 0.7),
+	);
 	yield* waitUntil('next');
-	yield* logoRef().parent().position.y(-1400, 1);
 });
 

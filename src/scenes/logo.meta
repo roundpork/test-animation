@@ -2,12 +2,8 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "rotate",
-      "targetTime": 1.4179941002949845
-    },
-    {
       "name": "next",
-      "targetTime": 3.485508849557521
+      "targetTime": 3.4841814159292044
     }
   ],
   "seed": 3485485868
