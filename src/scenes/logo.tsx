@@ -2,8 +2,8 @@ import {Img, makeScene2D, Circle} from '@motion-canvas/2d';
 import {waitUntil} from '@motion-canvas/core/lib/flow';
 import {all, createRef, spring, easeOutBounce} from '@motion-canvas/core';
 import {Rect} from '@motion-canvas/2d/lib/components';
-import logo from '../images/roundpork-youtube-logo.svg';
-import logoWhite from '../images/roundpork-youtube-logo-all-white.svg';
+import logo from '../../images/roundpork-youtube-logo.svg';
+import logoWhite from '../../images/roundpork-youtube-logo-all-white.svg';
 
 export default makeScene2D(function* (view) {
 	// Create anchors

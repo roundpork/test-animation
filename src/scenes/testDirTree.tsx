@@ -1,20 +1,18 @@
-import {makeScene2D} from '@motion-canvas/2d';
+import {makeScene2D, Code, word, insert} from '@motion-canvas/2d';
 import {Rect} from '@motion-canvas/2d/lib/components'
 import {waitUntil} from '@motion-canvas/core/lib/flow';
 import {slideTransition} from '@motion-canvas/core/lib/transitions';
-import {createRef} from '@motion-canvas/core/lib/utils'
-import {CodeBlock, edit, insert, word, lines} from '@motion-canvas/2d/lib/components/CodeBlock';
-import {Direction} from '@motion-canvas/core/lib/types';
+import {all, createRef, Direction} from '@motion-canvas/core'
 
 export default makeScene2D(function* (view) {
 	// Add actor
-	const code = createRef<CodeBlock>();
+	const code = createRef<Code>();
 
 	// Add actor to scene
 	view.add(
 		<>
 			<Rect layout>
-				<CodeBlock
+				<Code
 					ref={code}
 					fontSize={24}
 					lineHeight={36}
@@ -48,7 +46,9 @@ export default makeScene2D(function* (view) {
 	// Animate
 	yield* slideTransition(Direction.Bottom, 1);
 	yield* waitUntil('signal');
-	yield* code().edit(1.2)`.
+	yield* all(
+	code().selection(word(3, 8, 9), 1.2),
+	code().code.edit(1.2)`.
 ├── audio
 │   └── voice.mp3${insert(`
 │   └── voice.mp3`)}
@@ -69,8 +69,8 @@ export default makeScene2D(function* (view) {
 │   ├── logo.tsx
 │   └── testCode.tsx
 └── videos
-    └── test-video.mp4`;
-
+    └── test-video.mp4`,
+	);
 	yield* waitUntil('name_radius');
 });
 

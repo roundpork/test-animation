@@ -1,0 +1,30 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "signal",
+      "targetTime": 1
+    },
+    {
+      "name": "name_radius",
+      "targetTime": 1.8
+    },
+    {
+      "name": "name_3",
+      "targetTime": 2.1
+    },
+    {
+      "name": "area_signal",
+      "targetTime": 2.4
+    },
+    {
+      "name": "callback",
+      "targetTime": 4.2
+    },
+    {
+      "name": "invoke",
+      "targetTime": 9.999557522123894
+    }
+  ],
+  "seed": 2726428513
+}
